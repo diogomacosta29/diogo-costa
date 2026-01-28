@@ -68,16 +68,21 @@
       box-shadow: 0 8px 24px rgba(0,0,0,.25);
       gap:10px;
       cursor:pointer;
+      color:inherit;
     }
     .btn:hover{background: rgba(255,255,255,.10)}
     .btn.primary{
       border-color: rgba(124,58,237,.35);
       background: linear-gradient(135deg, rgba(124,58,237,.28), rgba(59,130,246,.22));
     }
+    .btn.lang.active{
+      border-color: rgba(59,130,246,.45);
+      background: rgba(59,130,246,.14);
+      color: var(--text);
+    }
 
     .hero{padding:54px 0 22px}
 
-    /* 2 columns on desktop: left = main, right = photo + stats */
     .grid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -124,7 +129,7 @@
       color:var(--muted);
       font-size: clamp(15px, 2vw, 17px);
       line-height:1.55;
-      max-width: 58ch;
+      max-width: 62ch;
     }
     .actions{display:flex; gap:12px; flex-wrap:wrap}
 
@@ -236,7 +241,6 @@
     }
     .toast.show{transform: translateY(0); opacity:1}
 
-    /* Photo card */
     .photo{
       width:180px; height:180px; object-fit:cover; border-radius:50%;
       border:4px solid rgba(255,255,255,.25);
@@ -255,28 +259,32 @@
       </div>
 
       <div class="links">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-i18n="navAbout"></a>
+        <a href="#education" data-i18n="navEducation"></a>
+        <a href="#services" data-i18n="navServices"></a>
+        <a href="#projects" data-i18n="navProjects"></a>
+        <a href="#contact" data-i18n="navContact"></a>
       </div>
 
-      <a class="btn primary" href="#contact">Contact me →</a>
+      <div style="display:flex; gap:8px; align-items:center">
+        <button class="btn lang" id="btnEN" type="button">EN</button>
+        <button class="btn lang" id="btnES" type="button">ES</button>
+        <a class="btn primary" href="#contact" data-i18n="navCta"></a>
+      </div>
     </div>
   </div>
 
   <header class="hero">
     <div class="wrap grid">
-      <!-- LEFT: main hero -->
+      <!-- LEFT -->
       <div class="card pad">
-        <div class="kicker"><span></span><strong id="kickerTxt">Open to opportunities</strong></div>
-        <h1 id="headline">Hi, I'm Diogo — Project Engineer</h1>
+        <div class="kicker"><span></span><strong id="kickerTxt"></strong></div>
+        <h1 id="headline"></h1>
         <p class="lead" id="lead"></p>
 
         <div class="actions">
-          <a class="btn primary" href="#projects">View projects</a>
-          <button class="btn" id="copyEmailBtn">Copy email</button>
+          <a class="btn primary" href="#projects" data-i18n="heroViewProjects"></a>
+          <button class="btn" id="copyEmailBtn" type="button" data-i18n="heroCopyEmail"></button>
           <a class="btn" id="linkedinBtn" href="#" target="_blank" rel="noopener">LinkedIn</a>
         </div>
 
@@ -290,12 +298,12 @@
         </div>
       </div>
 
-      <!-- RIGHT: photo + stats -->
+      <!-- RIGHT -->
       <div class="right-col">
         <div class="card pad" style="text-align:center">
           <img class="photo" src="foto-Diogo.jpeg" alt="Diogo Costa" />
           <h3 style="margin:0">Diogo Costa</h3>
-          <p style="margin:6px 0 0; color:var(--muted)">Project Engineer · Seville</p>
+          <p style="margin:6px 0 0; color:var(--muted)" data-i18n="heroRoleLine"></p>
         </div>
 
         <div class="stat card">
@@ -306,14 +314,14 @@
         </div>
         <div class="stat card">
           <div style="padding:18px">
-            <p class="big" id="stat2Big">Seville • PT/ES/EN</p>
-            <p class="small" id="stat2Small">Location and languages</p>
+            <p class="big" id="stat2Big"></p>
+            <p class="small" id="stat2Small"></p>
           </div>
         </div>
         <div class="stat card">
           <div style="padding:18px">
-            <p class="big" id="stat3Big">Fast response</p>
-            <p class="small" id="stat3Small">Usually reply the same day</p>
+            <p class="big" id="stat3Big"></p>
+            <p class="small" id="stat3Small"></p>
           </div>
         </div>
       </div>
@@ -324,82 +332,62 @@
     <section id="about">
       <div class="wrap">
         <div class="section-title">
-          <h2>About</h2>
-          <p>Who I am and what I do</p>
+          <h2 data-i18n="aboutTitle"></h2>
+          <p data-i18n="aboutSubtitle"></p>
         </div>
         <div class="card pad">
-          <p style="margin:0; color:var(--muted); line-height:1.7">
-            I am <strong>Diogo Costa</strong>, a Project Engineer with experience in industrial manufacturing environments.
-            I manage projects end-to-end, including planning, CAPEX control, supplier coordination,
-            technical documentation and on-site execution, ensuring compliance with safety and quality standards.
-            I am currently seeking a project engineering opportunity in <strong>Seville</strong>.
-          </p>
+          <p style="margin:0; color:var(--muted); line-height:1.7" data-i18n="aboutText"></p>
         </div>
       </div>
     </section>
+
     <section id="education">
-  <div class="wrap">
-    <div class="section-title">
-      <h2>Education</h2>
-      <p>Academic background</p>
-    </div>
+      <div class="wrap">
+        <div class="section-title">
+          <h2 data-i18n="eduTitle"></h2>
+          <p data-i18n="eduSubtitle"></p>
+        </div>
 
-    <div class="card pad">
-      <div style="display:grid; gap:14px">
-
-        <div style="
-          padding:16px;
-          border:1px solid var(--border);
-          border-radius: var(--radius);
-          background: rgba(255,255,255,.04)
-        ">
-          <div style="
-            display:flex;
-            justify-content:space-between;
-            gap:12px;
-            flex-wrap:wrap
-          ">
-            <strong>Bachelor’s Degree in Electrical and Computer Engineering</strong>
-            <span style="color:var(--muted); font-size:13px">
-              2019 – 2023
-            </span>
-          </div>
-
-          <div style="color:var(--muted); margin-top:6px">
-            Instituto Superior de Engenharia do Porto (ISEP) · Porto, Portugal
-          </div>
-
-          <div style="margin-top:10px">
-            <span class="pill">Electrical Engineering</span>
-            <span class="pill">Computer Engineering</span>
-            <span class="pill">Automation</span>
-            <span class="pill">Programming</span>
-            <span class="pill">Industrial Systems</span>
+        <div class="card pad">
+          <div style="display:grid; gap:14px">
+            <div style="padding:16px; border:1px solid var(--border); border-radius: var(--radius); background: rgba(255,255,255,.04)">
+              <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+                <strong data-i18n="eduDegree"></strong>
+                <span style="color:var(--muted); font-size:13px" data-i18n="eduYears"></span>
+              </div>
+              <div style="color:var(--muted); margin-top:6px" data-i18n="eduSchool"></div>
+              <div style="margin-top:10px">
+                <span class="pill" data-i18n="eduTag1"></span>
+                <span class="pill" data-i18n="eduTag2"></span>
+                <span class="pill" data-i18n="eduTag3"></span>
+                <span class="pill" data-i18n="eduTag4"></span>
+                <span class="pill" data-i18n="eduTag5"></span>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
     <section id="services">
       <div class="wrap">
         <div class="section-title">
-          <h2>Services</h2>
-          <p>What I can contribute</p>
+          <h2 data-i18n="servicesTitle"></h2>
+          <p data-i18n="servicesSubtitle"></p>
         </div>
         <div class="cols">
           <div class="tile">
-            <h3>Planning</h3>
-            <p>Scope definition, scheduling, risk identification and progress tracking.</p>
+            <h3 data-i18n="svc1Title"></h3>
+            <p data-i18n="svc1Text"></p>
           </div>
           <div class="tile">
-            <h3>Coordination</h3>
-            <p>Daily coordination with internal teams and external suppliers, meetings, reporting and follow-up.</p>
+            <h3 data-i18n="svc2Title"></h3>
+            <p data-i18n="svc2Text"></p>
           </div>
           <div class="tile">
-            <h3>Delivery</h3>
-            <p>Site supervision, commissioning support, documentation handover and project closure.</p>
+            <h3 data-i18n="svc3Title"></h3>
+            <p data-i18n="svc3Text"></p>
           </div>
         </div>
       </div>
@@ -408,53 +396,41 @@
     <section id="projects">
       <div class="wrap">
         <div class="section-title">
-          <h2>Projects</h2>
-          <p>Selected work</p>
+          <h2 data-i18n="projectsTitle"></h2>
+          <p data-i18n="projectsSubtitle"></p>
         </div>
 
         <div class="proj">
           <div class="proj-item">
             <div class="meta">
-              <span class="pill">2024–Now</span><span class="pill">Nestlé</span><span class="pill">Security</span>
+              <span class="pill" data-i18n="pMetaNow"></span><span class="pill">Nestlé</span><span class="pill" data-i18n="pTagSecurity"></span>
             </div>
-            <h3>Security Compliance Upgrade (CCTV & Access Control)</h3>
-            <p>
-              Integration of approximately 170 CCTV and access control devices into a centralized security platform,
-              improving coverage and ensuring compliance with corporate and safety standards.
-            </p>
+            <h3 data-i18n="p1Title"></h3>
+            <p data-i18n="p1Text"></p>
           </div>
 
           <div class="proj-item">
             <div class="meta">
-              <span class="pill">2024–Now</span><span class="pill">Electrical</span><span class="pill">Compliance</span>
+              <span class="pill" data-i18n="pMetaNow"></span><span class="pill" data-i18n="pTagElectrical"></span><span class="pill" data-i18n="pTagCompliance"></span>
             </div>
-            <h3>Emergency Lighting Redesign and Installation</h3>
-            <p>
-              Redesign and installation of emergency lighting systems to achieve full legal compliance,
-              including planning, execution coordination and operational continuity.
-            </p>
+            <h3 data-i18n="p2Title"></h3>
+            <p data-i18n="p2Text"></p>
           </div>
 
           <div class="proj-item">
             <div class="meta">
-              <span class="pill">2024–Now</span><span class="pill">Industrial</span><span class="pill">Noise</span>
+              <span class="pill" data-i18n="pMetaNow"></span><span class="pill" data-i18n="pTagIndustrial"></span><span class="pill" data-i18n="pTagNoise"></span>
             </div>
-            <h3>Industrial Noise Mitigation</h3>
-            <p>
-              Implementation of acoustic solutions for critical noise sources,
-              coordinating technical studies, suppliers and installation to achieve legal noise limits.
-            </p>
+            <h3 data-i18n="p3Title"></h3>
+            <p data-i18n="p3Text"></p>
           </div>
 
           <div class="proj-item">
             <div class="meta">
-              <span class="pill">2024–Now</span><span class="pill">Quality</span><span class="pill">Equipment</span>
+              <span class="pill" data-i18n="pMetaNow"></span><span class="pill" data-i18n="pTagQuality"></span><span class="pill" data-i18n="pTagEquipment"></span>
             </div>
-            <h3>Quality Control Laboratory Equipment Renewal</h3>
-            <p>
-              Replacement and upgrade of critical laboratory equipment to reduce downtime and improve testing reliability,
-              coordinating procurement, installation and validation.
-            </p>
+            <h3 data-i18n="p4Title"></h3>
+            <p data-i18n="p4Text"></p>
           </div>
         </div>
       </div>
@@ -463,45 +439,41 @@
     <section id="contact">
       <div class="wrap">
         <div class="section-title">
-          <h2>Contact</h2>
-          <p>Send a message (opens your email app)</p>
+          <h2 data-i18n="contactTitle"></h2>
+          <p data-i18n="contactSubtitle"></p>
         </div>
 
         <div class="contact">
           <div class="card pad">
-            <h3 style="margin:0 0 8px">Let’s talk</h3>
-            <p style="margin:0 0 14px; color:var(--muted); line-height:1.6">
-              Tell me what you need and I’ll get back to you with next steps.
-            </p>
+            <h3 style="margin:0 0 8px" data-i18n="contactCardTitle"></h3>
+            <p style="margin:0 0 14px; color:var(--muted); line-height:1.6" data-i18n="contactCardText"></p>
 
             <div>
-              <label for="name">Name</label>
-              <input id="name" placeholder="Your name" />
-              <label for="msg">Message</label>
-              <textarea id="msg" placeholder="Hi Diogo, I’d like to discuss…"></textarea>
+              <label for="name" data-i18n="formNameLabel"></label>
+              <input id="name" data-i18n-placeholder="formNamePh" />
+              <label for="msg" data-i18n="formMsgLabel"></label>
+              <textarea id="msg" data-i18n-placeholder="formMsgPh"></textarea>
 
-              <button class="btn primary" id="sendBtn" style="margin-top:12px">Send email →</button>
-              <p style="margin:10px 0 0; color:var(--muted); font-size:12px">
-                (This opens your email client with a pre-filled message.)
-              </p>
+              <button class="btn primary" id="sendBtn" type="button" style="margin-top:12px" data-i18n="formSendBtn"></button>
+              <p style="margin:10px 0 0; color:var(--muted); font-size:12px" data-i18n="formHint"></p>
             </div>
           </div>
 
           <div class="card pad">
-            <h3 style="margin:0 0 10px">Info</h3>
+            <h3 style="margin:0 0 10px" data-i18n="infoTitle"></h3>
             <p style="margin:0; color:var(--muted); line-height:1.7">
-              <strong>Email:</strong> <span id="emailTxt"></span><br/>
-              <strong>Location:</strong> <span id="locTxt"></span><br/>
+              <strong data-i18n="infoEmail"></strong> <span id="emailTxt"></span><br/>
+              <strong data-i18n="infoLocation"></strong> <span id="locTxt"></span><br/>
               <strong>LinkedIn:</strong> <span id="liTxt"></span>
             </p>
 
             <div style="margin-top:14px">
-              <a class="btn" id="emailBtn" href="#">Email me</a>
-              <a class="btn" id="cvBtn" href="#" download>Download CV</a>
+              <a class="btn" id="emailBtn" href="#" data-i18n="infoEmailBtn"></a>
+              <a class="btn" id="cvBtn" href="#" download data-i18n="infoCvBtn"></a>
             </div>
 
             <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); color:var(--muted); line-height:1.6">
-              <strong>Tip:</strong> To publish quickly, use GitHub Pages, Netlify or Vercel.
+              <strong data-i18n="tipLabel"></strong> <span data-i18n="tipText"></span>
             </div>
           </div>
         </div>
@@ -510,7 +482,7 @@
 
     <footer>
       <div class="wrap">
-        © <span id="year"></span> <span id="footerName"></span> • Built with HTML/CSS
+        © <span id="year"></span> <span id="footerName"></span> • <span data-i18n="footerBuilt"></span>
       </div>
     </footer>
   </main>
@@ -518,42 +490,211 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    // === EDIT HERE ===
+    // === YOUR FIXED INFO (doesn't change with language) ===
     const PROFILE = {
       name: "Diogo Costa",
-      kicker: "Open to opportunities in Seville",
-      headline: "Hi, I'm Diogo — Project Engineer",
-      lead: "Project Engineer with experience in industrial environments, coordinating CAPEX projects from planning to execution. Strong focus on cost, schedule, suppliers and technical compliance.",
       email: "diogomacosta29@gmail.com",
       location: "Seville, Spain",
       linkedinUrl: "https://www.linkedin.com/in/diogo-costa-8b1704295/",
-      linkedinText: "/in/diogo-costa-8b1704295",
-      stat1Big: "Industrial • CAPEX • Engineering",
-      stat1Small: "Planning, supplier coordination and project delivery",
+      linkedinText: "https://www.linkedin.com/in/diogo-costa-8b1704295/",
       cvUrl: "Diogo_Costa_Resume-4.pdf"
     };
 
-    // === APPLY DATA ===
+    // === TRANSLATIONS (EN / ES) ===
+    const T = {
+      en: {
+        navAbout: "About",
+        navEducation: "Education",
+        navServices: "Services",
+        navProjects: "Projects",
+        navContact: "Contact",
+        navCta: "Contact me →",
+
+        kicker: "Open to opportunities in Seville",
+        headline: "Hi, I'm Diogo — Project Engineer",
+        lead: "Project Engineer in industrial environments, delivering CAPEX projects end-to-end: planning, suppliers, cost/schedule, technical documentation and on-site execution.",
+
+        heroViewProjects: "View projects",
+        heroCopyEmail: "Copy email",
+        heroRoleLine: "Project Engineer · Seville",
+
+        stat1Big: "Industrial • CAPEX • Engineering",
+        stat1Small: "Planning, supplier coordination and project delivery",
+        stat2Big: "Seville • PT/ES/EN",
+        stat2Small: "Location and languages",
+        stat3Big: "Fast response",
+        stat3Small: "Usually reply the same day",
+
+        aboutTitle: "About",
+        aboutSubtitle: "Who I am and what I do",
+        aboutText: "I am Diogo Costa, a Project Engineer with experience in industrial manufacturing environments. I manage projects end-to-end, including planning, CAPEX control, supplier coordination, technical documentation and on-site execution, ensuring compliance with safety and quality standards. I am currently seeking a project engineering opportunity in Seville.",
+
+        eduTitle: "Education",
+        eduSubtitle: "Academic background",
+        eduDegree: "Bachelor’s Degree in Electrical and Computer Engineering",
+        eduYears: "2019 – 2023",
+        eduSchool: "Instituto Superior de Engenharia do Porto (ISEP) · Porto, Portugal",
+        eduTag1: "Electrical Engineering",
+        eduTag2: "Computer Engineering",
+        eduTag3: "Automation",
+        eduTag4: "Programming",
+        eduTag5: "Industrial Systems",
+
+        servicesTitle: "Services",
+        servicesSubtitle: "What I can contribute",
+        svc1Title: "Planning",
+        svc1Text: "Scope definition, scheduling, risk identification and progress tracking.",
+        svc2Title: "Coordination",
+        svc2Text: "Daily coordination with internal teams and external suppliers: meetings, reporting and follow-up.",
+        svc3Title: "Delivery",
+        svc3Text: "Site supervision, commissioning support, documentation handover and project closure.",
+
+        projectsTitle: "Projects",
+        projectsSubtitle: "Selected work",
+        pMetaNow: "2024–Now",
+        pTagSecurity: "Security",
+        pTagElectrical: "Electrical",
+        pTagCompliance: "Compliance",
+        pTagIndustrial: "Industrial",
+        pTagNoise: "Noise",
+        pTagQuality: "Quality",
+        pTagEquipment: "Equipment",
+
+        p1Title: "Security Compliance Upgrade (CCTV & Access Control)",
+        p1Text: "Integration of approximately 170 CCTV and access control devices into a centralized security platform, improving coverage and ensuring compliance with corporate and safety standards.",
+        p2Title: "Emergency Lighting Redesign and Installation",
+        p2Text: "Redesign and installation of emergency lighting systems to achieve full legal compliance, including planning, execution coordination and operational continuity.",
+        p3Title: "Industrial Noise Mitigation",
+        p3Text: "Implementation of acoustic solutions for critical noise sources, coordinating technical studies, suppliers and installation to achieve legal noise limits.",
+        p4Title: "Quality Control Laboratory Equipment Renewal",
+        p4Text: "Replacement and upgrade of critical laboratory equipment to reduce downtime and improve testing reliability, coordinating procurement, installation and validation.",
+
+        contactTitle: "Contact",
+        contactSubtitle: "Send a message (opens your email app)",
+        contactCardTitle: "Let’s talk",
+        contactCardText: "Tell me what you need and I’ll get back to you with next steps.",
+        formNameLabel: "Name",
+        formNamePh: "Your name",
+        formMsgLabel: "Message",
+        formMsgPh: "Hi Diogo, I’d like to discuss…",
+        formSendBtn: "Send email →",
+        formHint: "(This opens your email client with a pre-filled message.)",
+
+        infoTitle: "Info",
+        infoEmail: "Email:",
+        infoLocation: "Location:",
+        infoEmailBtn: "Email me",
+        infoCvBtn: "Download CV",
+        tipLabel: "Tip:",
+        tipText: "To publish quickly, use GitHub Pages, Netlify or Vercel.",
+        footerBuilt: "Built with HTML/CSS",
+
+        toastCopied: "Email copied ✅",
+        toastCopyFail: "Could not copy automatically. Please copy manually.",
+
+        mailSubjectWithName: "Website contact — {name}",
+        mailSubject: "Website contact",
+        mailBody: "Hi Diogo, I’d like to get in touch."
+      },
+
+      es: {
+        navAbout: "Sobre mí",
+        navEducation: "Educación",
+        navServices: "Servicios",
+        navProjects: "Proyectos",
+        navContact: "Contacto",
+        navCta: "Contactar →",
+
+        kicker: "Buscando oportunidades en Sevilla",
+        headline: "Hola, soy Diogo — Ingeniero de Proyectos",
+        lead: "Ingeniero de proyectos en entornos industriales, gestionando proyectos CAPEX de principio a fin: planificación, proveedores, coste/plazo, documentación técnica y ejecución en planta.",
+
+        heroViewProjects: "Ver proyectos",
+        heroCopyEmail: "Copiar email",
+        heroRoleLine: "Ingeniero de Proyectos · Sevilla",
+
+        stat1Big: "Industrial • CAPEX • Ingeniería",
+        stat1Small: "Planificación, proveedores y entrega de proyectos",
+        stat2Big: "Sevilla • PT/ES/EN",
+        stat2Small: "Ubicación e idiomas",
+        stat3Big: "Respuesta rápida",
+        stat3Small: "Normalmente respondo el mismo día",
+
+        aboutTitle: "Sobre mí",
+        aboutSubtitle: "Quién soy y qué hago",
+        aboutText: "Soy Diogo Costa, Ingeniero de Proyectos con experiencia en entornos industriales. Gestiono proyectos end-to-end: planificación, control CAPEX, coordinación de proveedores, documentación técnica y ejecución en planta, asegurando cumplimiento de seguridad y calidad. Actualmente busco una oportunidad en Sevilla.",
+
+        eduTitle: "Educación",
+        eduSubtitle: "Formación académica",
+        eduDegree: "Grado en Ingeniería Electrotécnica y de Computadores",
+        eduYears: "2019 – 2023",
+        eduSchool: "Instituto Superior de Engenharia do Porto (ISEP) · Oporto, Portugal",
+        eduTag1: "Ingeniería eléctrica",
+        eduTag2: "Ingeniería informática",
+        eduTag3: "Automatización",
+        eduTag4: "Programación",
+        eduTag5: "Sistemas industriales",
+
+        servicesTitle: "Servicios",
+        servicesSubtitle: "Cómo puedo aportar valor",
+        svc1Title: "Planificación",
+        svc1Text: "Definición de alcance, planificación, identificación de riesgos y seguimiento.",
+        svc2Title: "Coordinación",
+        svc2Text: "Coordinación diaria con equipos internos y proveedores: reuniones, reporting y seguimiento.",
+        svc3Title: "Entrega",
+        svc3Text: "Supervisión en planta, apoyo a puesta en marcha, entrega documental y cierre del proyecto.",
+
+        projectsTitle: "Proyectos",
+        projectsSubtitle: "Trabajo seleccionado",
+        pMetaNow: "2024–Actualidad",
+        pTagSecurity: "Seguridad",
+        pTagElectrical: "Eléctrico",
+        pTagCompliance: "Cumplimiento",
+        pTagIndustrial: "Industrial",
+        pTagNoise: "Ruido",
+        pTagQuality: "Calidad",
+        pTagEquipment: "Equipos",
+
+        p1Title: "Mejora de Cumplimiento en Seguridad (CCTV y Control de Accesos)",
+        p1Text: "Integración de aproximadamente 170 dispositivos de CCTV y control de accesos en una plataforma centralizada, mejorando cobertura y asegurando cumplimiento de estándares corporativos y de seguridad.",
+        p2Title: "Rediseño e Instalación de Iluminación de Emergencia",
+        p2Text: "Rediseño e instalación para lograr cumplimiento legal completo, incluyendo planificación, coordinación de ejecución y continuidad operativa.",
+        p3Title: "Mitigación de Ruido Industrial",
+        p3Text: "Implementación de soluciones acústicas en focos críticos, coordinando estudios técnicos, proveedores e instalación para alcanzar límites legales.",
+        p4Title: "Renovación de Equipos de Laboratorio (Control de Calidad)",
+        p4Text: "Sustitución y mejora de equipos clave para reducir paradas y mejorar la fiabilidad, coordinando compras, instalación y validación.",
+
+        contactTitle: "Contacto",
+        contactSubtitle: "Enviar mensaje (abre tu correo)",
+        contactCardTitle: "Hablemos",
+        contactCardText: "Cuéntame qué necesitas y te responderé con próximos pasos.",
+        formNameLabel: "Nombre",
+        formNamePh: "Tu nombre",
+        formMsgLabel: "Mensaje",
+        formMsgPh: "Hola Diogo, me gustaría hablar sobre…",
+        formSendBtn: "Enviar email →",
+        formHint: "(Esto abre tu cliente de correo con un mensaje pre-rellenado.)",
+
+        infoTitle: "Info",
+        infoEmail: "Email:",
+        infoLocation: "Ubicación:",
+        infoEmailBtn: "Escríbeme",
+        infoCvBtn: "Descargar CV",
+        tipLabel: "Consejo:",
+        tipText: "Para publicar rápido, usa GitHub Pages, Netlify o Vercel.",
+        footerBuilt: "Hecho con HTML/CSS",
+
+        toastCopied: "Email copiado ✅",
+        toastCopyFail: "No se pudo copiar automáticamente. Cópialo manualmente.",
+
+        mailSubjectWithName: "Contacto desde la web — {name}",
+        mailSubject: "Contacto desde la web",
+        mailBody: "Hola Diogo, me gustaría ponerme en contacto."
+      }
+    };
+
+    // === HELPERS ===
     const $ = (id) => document.getElementById(id);
-
-    $("brandName").textContent = PROFILE.name;
-    $("kickerTxt").textContent = PROFILE.kicker;
-    $("headline").textContent = PROFILE.headline;
-    $("lead").textContent = PROFILE.lead;
-
-    $("stat1Big").textContent = PROFILE.stat1Big;
-    $("stat1Small").textContent = PROFILE.stat1Small;
-
-    $("emailTxt").textContent = PROFILE.email;
-    $("locTxt").textContent = PROFILE.location;
-    $("liTxt").textContent = PROFILE.linkedinText;
-
-    $("footerName").textContent = PROFILE.name;
-    $("year").textContent = new Date().getFullYear();
-
-    $("linkedinBtn").href = PROFILE.linkedinUrl;
-    $("emailBtn").href = `mailto:${encodeURIComponent(PROFILE.email)}`;
-    $("cvBtn").href = PROFILE.cvUrl;
 
     function toast(msg){
       const t = $("toast");
@@ -562,23 +703,93 @@
       setTimeout(()=>t.classList.remove("show"), 2200);
     }
 
+    function setActiveLangButton(lang){
+      $("btnEN").classList.toggle("active", lang === "en");
+      $("btnES").classList.toggle("active", lang === "es");
+    }
+
+    function applyLanguage(lang){
+      const dict = T[lang];
+      document.documentElement.lang = lang;
+
+      // Elements with data-i18n (textContent)
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      // Placeholders
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (dict[key] !== undefined) el.setAttribute("placeholder", dict[key]);
+      });
+
+      // Profile fields
+      $("brandName").textContent = PROFILE.name;
+      $("kickerTxt").textContent = dict.kicker;
+      $("headline").textContent = dict.headline;
+      $("lead").textContent = dict.lead;
+
+      $("stat1Big").textContent = dict.stat1Big;
+      $("stat1Small").textContent = dict.stat1Small;
+      $("stat2Big").textContent = dict.stat2Big;
+      $("stat2Small").textContent = dict.stat2Small;
+      $("stat3Big").textContent = dict.stat3Big;
+      $("stat3Small").textContent = dict.stat3Small;
+
+      $("emailTxt").textContent = PROFILE.email;
+      $("locTxt").textContent = PROFILE.location;
+      $("liTxt").textContent = PROFILE.linkedinText;
+
+      $("footerName").textContent = PROFILE.name;
+      $("year").textContent = new Date().getFullYear();
+
+      $("linkedinBtn").href = PROFILE.linkedinUrl;
+      $("emailBtn").href = `mailto:${encodeURIComponent(PROFILE.email)}`;
+      $("cvBtn").href = PROFILE.cvUrl;
+
+      setActiveLangButton(lang);
+    }
+
+    // === INIT LANGUAGE ===
+    const saved = localStorage.getItem("lang");
+    const browserPref = (navigator.language || "en").toLowerCase().startsWith("es") ? "es" : "en";
+    let currentLang = saved || browserPref;
+
+    // === EVENTS ===
+    $("btnEN").addEventListener("click", () => {
+      currentLang = "en";
+      localStorage.setItem("lang", currentLang);
+      applyLanguage(currentLang);
+    });
+    $("btnES").addEventListener("click", () => {
+      currentLang = "es";
+      localStorage.setItem("lang", currentLang);
+      applyLanguage(currentLang);
+    });
+
     $("copyEmailBtn").addEventListener("click", async () => {
       try{
         await navigator.clipboard.writeText(PROFILE.email);
-        toast("Email copied ✅");
+        toast(T[currentLang].toastCopied);
       }catch(e){
-        toast("Could not copy automatically. Please copy manually.");
+        toast(T[currentLang].toastCopyFail);
       }
     });
 
     $("sendBtn").addEventListener("click", () => {
       const name = $("name").value.trim();
       const msg = $("msg").value.trim();
-      const subject = name ? `Website contact — ${name}` : "Website contact";
-      const body = msg || "Hi Diogo, I’d like to get in touch.";
-      const mailto = `mailto:${encodeURIComponent(PROFILE.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const subjectT = name ? T[currentLang].mailSubjectWithName.replace("{name}", name) : T[currentLang].mailSubject;
+      const bodyT = msg || T[currentLang].mailBody;
+
+      const mailto = `mailto:${encodeURIComponent(PROFILE.email)}?subject=${encodeURIComponent(subjectT)}&body=${encodeURIComponent(bodyT)}`;
       window.location.href = mailto;
     });
+
+    // Apply on load
+    applyLanguage(currentLang);
   </script>
 </body>
-</html>   
+</html>
